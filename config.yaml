@@ -1,0 +1,48 @@
+start: "2023-05-09T17:49:12+08:00"
+end: "2023-05-09T18:49:12+08:00"
+interval: 10 # 10s
+precision: 1000 # ms
+num-field: 10
+tag-set:
+  hostname:
+    - host-0
+    - host-1
+    - host-2
+    - host-3
+  region:
+    - sg-central
+    - us-east-1
+    - us-west-2
+    - us-central-1
+  datacenter:
+    - dc-0
+    - dc-1
+  rack:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  os:
+    - ubuntu-22.04
+    - ubuntu-20.04
+  arch:
+    - x86_64
+    - aarch64
+  team:
+    - HZ
+    - BJ
+    - SH
+    - SZ
+  services:
+    - etcd
+    - kafka
+    - frontend
+    - datanode
+    - metasrv
+  services-version:
+    - "1.0"
+    - "2.0"
+  services-env:
+    - offline
+    - test
+    - prod
