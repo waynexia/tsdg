@@ -41,7 +41,7 @@ def generate_data(
         tags_permutation = tag_set_permutation(tag_set)
         # write header
         header = (
-            ["timestamp"]
+            ["ts"]
             + [k for k in tag_set.keys()]
             + ["field" + str(i) for i in range(num_field)]
         )

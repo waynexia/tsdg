@@ -39,10 +39,10 @@ tag-set:
     - frontend
     - datanode
     - metasrv
-  services-version:
+  services_version:
     - "1.0"
     - "2.0"
-  services-env:
+  services_env:
     - offline
     - test
     - prod
