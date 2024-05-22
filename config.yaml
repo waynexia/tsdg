@@ -3,46 +3,190 @@ end: "2023-05-09T18:49:12+08:00"
 interval: 10 # 10s
 precision: 1000 # ms
 num-field: 10
-tag-set:
-  hostname:
-    - host-0
-    - host-1
-    - host-2
-    - host-3
-  region:
-    - sg-central
-    - us-east-1
-    - us-west-2
-    - us-central-1
-  datacenter:
-    - dc-0
-    - dc-1
-  rack:
-    - "1"
-    - "2"
-    - "3"
-    - "4"
-  os:
-    - ubuntu-22.04
-    - ubuntu-20.04
-  arch:
-    - x86_64
-    - aarch64
-  team:
-    - HZ
-    - BJ
-    - SH
-    - SZ
-  services:
-    - etcd
-    - kafka
-    - frontend
-    - datanode
-    - metasrv
-  services_version:
-    - "1.0"
-    - "2.0"
-  services_env:
-    - offline
-    - test
-    - prod
+tags:
+  - name: hostname
+    type: STRING
+    nullability: 0
+    dist:
+      type: constant_string
+      value: host-0
+  - name: region
+    type: STRING
+    nullability: 0
+    dist:
+      type: weighted_preset
+      preset:
+        - value: sg-central
+          weight: 1
+        - value: us-east-1
+          weight: 1
+        - value: us-west-2
+          weight: 1
+        - value: us-central-1
+          weight: 1
+  - name: datacenter
+    type: STRING
+    nullability: 0
+    dist:
+      type: weighted_preset
+      preset:
+        - value: dc-0
+          weight: 1
+        - value: dc-1
+          weight: 1
+  - name: rack
+    type: STRING
+    nullability: 0
+    dist:
+      type: weighted_preset
+      preset:
+        - value: "1"
+          weight: 1
+        - value: "2"
+          weight: 1
+        - value: "3"
+          weight: 1
+        - value: "4"
+          weight: 1
+  - name: os
+    type: STRING
+    nullability: 0
+    dist:
+      type: weighted_preset
+      preset:
+        - value: ubuntu-22.04
+          weight: 1
+        - value: ubuntu-20.04
+          weight: 0.5
+  - name: arch
+    type: STRING
+    nullability: 0
+    dist:
+      type: weighted_preset
+      preset:
+        - value: x86_64
+          weight: 1
+        - value: aarch64
+          weight: 1
+  - name: team
+    type: STRING
+    nullability: 0
+    dist:
+      type: weighted_preset
+      preset:
+        - value: HZ
+          weight: 15
+        - value: BJ
+          weight: 10
+        - value: SH
+          weight: 0
+        - value: GZ
+          weight: 2
+  - name: services
+    type: STRING
+    nullability: 0
+    dist:
+      type: weighted_preset
+      preset:
+        - value: etcd
+          weight: 1
+        - value: kafka
+          weight: 1
+        - value: frontend
+          weight: 10
+        - value: datanode
+          weight: 5
+        - value: metasrv
+          weight: 3
+  - name: services_version
+    type: STRING
+    nullability: 0
+    dist:
+      type: weighted_preset
+      preset:
+        - value: "1.0"
+          weight: 1
+        - value: "2.0"
+          weight: 1
+  - name: services_env
+    type: STRING
+    nullability: 0
+    dist:
+      type: weighted_preset
+      preset:
+        - value: offline
+          weight: 1
+        - value: test
+          weight: 2
+        - value: prod
+          weight: 1
+
+fields:
+  - name: cpu
+    type: FLOAT
+    nullability: 0
+    dist:
+      type: random
+      lower_bound: 0
+      upper_bound: 100
+  - name: mem
+    type: FLOAT
+    nullability: 0
+    dist:
+      type: normal
+      mean: 0.5
+      stddev: 0.1
+  - name: disk
+    type: FLOAT
+    nullability: 0
+    dist:
+      type: mono_inc
+      step: 11
+  - name: network
+    type: FLOAT
+    nullability: 0
+    dist:
+      type: normal
+      mean: 100
+      stddev: 2000
+  - name: io
+    type: FLOAT
+    nullability: 0
+    dist:
+      type: normal
+      mean: 0
+      stddev: 200
+  - name: cpu_temp
+    type: FLOAT
+    nullability: 0
+    dist:
+      type: uniform
+      lower_bound: 0
+      upper_bound: 100
+  - name: mem_temp
+    type: FLOAT
+    nullability: 0
+    dist:
+      type: noise
+      max_fluctuation: 30
+  - name: disk_temp
+    type: FLOAT
+    nullability: 0
+    dist:
+      type: normal
+      mean: 0.5
+      stddev: 0.1
+  - name: network_temp
+    type: FLOAT
+    nullability: 0
+    dist:
+      type: periodic
+      period: 100
+      amplitude: 204800
+      bias: 1024
+  - name: io_temp
+    type: FLOAT
+    nullability: 0
+    dist:
+      type: constant_float
+      value: 10.1

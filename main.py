@@ -8,6 +8,8 @@ from pathlib import Path
 import datetime
 from tqdm import trange
 
+from col import Column
+
 
 # Parse command line arguments and return the parsed result
 def arg_parser():
@@ -19,7 +21,8 @@ def arg_parser():
     return parser.parse_args()
 
 
-def tag_set_permutation(tag_set: dict):
+def tag_set_permutation(tags: list):
+    tag_set = {tag.name: [tag_v for tag_v in tag.dist.all()] for tag in tags}
     keys, values = zip(*tag_set.items())
     count = reduce(lambda count, i: count * len(i), values, 1)
     print("number of tag combinations:" + str(count))
@@ -32,26 +35,26 @@ def generate_data(
     end: int,
     interval: int,
     precision: int,
-    num_field: int,
+    tags: list,
+    fields: list,
     out_dir: str,
-    tag_set: dict,
 ):
     with open(out_dir, "w", newline="") as output:
         writer = csv.writer(output, delimiter=",")
-        tags_permutation = tag_set_permutation(tag_set)
         # write header
-        header = (
-            ["ts"]
-            + [k for k in tag_set.keys()]
-            + ["field" + str(i) for i in range(num_field)]
-        )
+        header = ["ts"] + [t.name for t in tags] + [f.name for f in fields]
         writer.writerow(header)
+        tags_permutation = tag_set_permutation(tags)
+        series_generator = [
+            [series, dict([[field.name, field.dist.generator()] for field in fields])]
+            for series in tags_permutation
+        ]
         # write rows
         for ts in trange(start, end, interval):
-            for tags in tags_permutation:
+            for series in series_generator:
                 timestamp = ts * precision
-                tag_array = [v for v in tags.values()]
-                field_array = [random.random() * 100 for _ in range(num_field)]
+                tag_array = [v for v in series[0].values()]
+                field_array = [next(v) for v in series[1].values()]
                 writer.writerow([timestamp] + tag_array + field_array)
 
 
@@ -63,8 +66,12 @@ def load_yaml(path):
 
 
 # Parse rfc3339 timestamp to unix timestamp
-def parse_time(time_str: str):
+def parse_time(time_str: str) -> float:
     return datetime.datetime.fromisoformat(time_str).timestamp()
+
+
+def parse_col_defs(fields: list) -> list:
+    return [Column.from_config(f) for f in fields]
 
 
 def main():
@@ -72,16 +79,23 @@ def main():
     print(args)
     config_path = Path(args.config)
     config = load_yaml(config_path)
+
+    start = int(parse_time(config["start"]))
+    end = int(parse_time(config["end"]))
+    interval = int(config["interval"])
+    precision = int(config["precision"])
+
+    tags = parse_col_defs(config["tags"])
+    fields = parse_col_defs(config["fields"])
+
     generate_data(
-        int(parse_time(
-            config["start"],
-        )),
-        int(parse_time(config["end"])),
-        int(config["interval"]),
-        int(config["precision"]),
-        config["num-field"],
-        args.out,
-        config["tag-set"],
+        start=start,
+        end=end,
+        interval=interval,
+        precision=precision,
+        tags=tags,
+        fields=fields,
+        out_dir=args.out,
     )
 
 
