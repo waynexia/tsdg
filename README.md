@@ -18,3 +18,7 @@ python main.py --help
 # Configuration
 
 `config.yaml` provides an example configuration file. You can change the parameters in the file to generate different time-series data.
+
+# Python Scripts Documentation
+
+For detailed information on the Python scripts used in this project, including their purpose, functionality, and how they interact with each other, please refer to the [PYTHON_SCRIPTS.md](PYTHON_SCRIPTS.md) document.
