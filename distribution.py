@@ -1,11 +1,14 @@
 from abc import ABC, abstractmethod
 import random
 import math
+import string
+
 
 class Distribution(ABC):
     """
     Abstract base class for distributions. Defines the structure for distribution classes.
     """
+
     @abstractmethod
     def __init__(self):
         pass
@@ -31,6 +34,10 @@ class Distribution(ABC):
             return MonoDec(config["step"])
         elif dist_type == "random":
             return Random(config["upper_bound"], config["lower_bound"])
+        elif dist_type == "random_int":
+            return RandomInt(config["upper_bound"], config["lower_bound"])
+        elif dist_type == "random_string":
+            return RandomString(config["length"])
         elif dist_type == "normal":
             return Normal(config["mean"], config["stddev"])
         elif dist_type == "uniform":
@@ -50,10 +57,12 @@ class Distribution(ABC):
         else:
             raise ValueError(f"Unsupported distribution type: {dist_type}")
 
+
 class MonoInc(Distribution):
     """
     Represents a monotonically increasing distribution.
     """
+
     def __init__(self, step: float):
         self.step = step
 
@@ -63,10 +72,12 @@ class MonoInc(Distribution):
             yield current
             current += self.step
 
+
 class MonoDec(Distribution):
     """
     Represents a monotonically decreasing distribution.
     """
+
     def __init__(self, step: float):
         self.step = step
 
@@ -76,10 +87,12 @@ class MonoDec(Distribution):
             yield current
             current -= self.step
 
+
 class Random(Distribution):
     """
     Represents a random distribution within specified bounds.
     """
+
     def __init__(self, upper_bound: float, lower_bound: float):
         self.upper_bound = upper_bound
         self.lower_bound = lower_bound
@@ -88,10 +101,31 @@ class Random(Distribution):
         while True:
             yield random.uniform(self.lower_bound, self.upper_bound)
 
+
+class RandomInt(Distribution):
+    def __init__(self, upper_bound: int, lower_bound: int):
+        self.upper_bound = upper_bound
+        self.lower_bound = lower_bound
+
+    def generator(self):
+        while True:
+            yield random.randint(self.lower_bound, self.upper_bound)
+
+
+class RandomString(Distribution):
+    def __init__(self, length: int):
+        self.length = length
+
+    def generator(self):
+        while True:
+            yield random.choices(string.ascii_letters + string.digits, k=self.length)
+
+
 class Normal(Distribution):
     """
     Represents a normal (Gaussian) distribution.
     """
+
     def __init__(self, mean: float, std_dev: float):
         self.mean = mean
         self.std_dev = std_dev
@@ -100,10 +134,12 @@ class Normal(Distribution):
         while True:
             yield random.normalvariate(self.mean, self.std_dev)
 
+
 class Uniform(Distribution):
     """
     Represents a uniform distribution within specified bounds.
     """
+
     def __init__(self, upper_bound: float, lower_bound: float):
         self.upper_bound = upper_bound
         self.lower_bound = lower_bound
@@ -112,10 +148,12 @@ class Uniform(Distribution):
         while True:
             yield random.uniform(self.lower_bound, self.upper_bound)
 
+
 class Noise(Distribution):
     """
     Represents a noise distribution with a maximum fluctuation.
     """
+
     def __init__(self, max_fluctuation: float):
         self.max_fluctuation = max_fluctuation
 
@@ -125,10 +163,12 @@ class Noise(Distribution):
             current += random.uniform(-self.max_fluctuation, self.max_fluctuation)
             yield current
 
+
 class Periodic(Distribution):
     """
     Represents a periodic distribution with specified period, amplitude, and bias.
     """
+
     def __init__(self, period: float, amplitude: float, bias: float):
         self.period = period
         self.amplitude = amplitude
@@ -140,10 +180,12 @@ class Periodic(Distribution):
             current = self.amplitude * math.sin(current / self.period) + self.bias
             yield current
 
+
 class ConstantString(Distribution):
     """
     Represents a constant string distribution.
     """
+
     def __init__(self, value: str):
         self.value = value
 
@@ -154,10 +196,12 @@ class ConstantString(Distribution):
         while True:
             yield self.value
 
+
 class ConstantInt(Distribution):
     """
     Represents a constant integer distribution.
     """
+
     def __init__(self, value: int):
         self.value = value
 
@@ -168,10 +212,12 @@ class ConstantInt(Distribution):
         while True:
             yield self.value
 
+
 class ConstantFloat(Distribution):
     """
     Represents a constant floating-point distribution.
     """
+
     def __init__(self, value: float):
         self.value = value
 
@@ -182,10 +228,12 @@ class ConstantFloat(Distribution):
         while True:
             yield self.value
 
+
 class Weight:
     """
     Represents a weighted value for the WeightedPreset distribution.
     """
+
     def __init__(self, value: str, weight: float):
         self.value = value
         self.weight = weight
@@ -193,10 +241,12 @@ class Weight:
     def from_config(config: dict):
         return Weight(config["value"], config["weight"])
 
+
 class WeightedPreset(Distribution):
     """
     Represents a weighted preset distribution.
     """
+
     def __init__(self, presets: list):
         self.presets = presets
 
