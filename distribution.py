@@ -14,7 +14,9 @@ class Distribution(ABC):
         pass
 
     def all(self) -> list:
-        raise ValueError(f"This distribution is not enumerable")
+        raise ValueError(
+            f"This distribution is not enumerable: " + self.__class__.__name__
+        )
 
     @abstractmethod
     def generator(self):
@@ -107,6 +109,9 @@ class RandomInt(Distribution):
         self.upper_bound = upper_bound
         self.lower_bound = lower_bound
 
+    def all(self) -> list:
+        return range(self.lower_bound, self.upper_bound)
+
     def generator(self):
         while True:
             yield random.randint(self.lower_bound, self.upper_bound)
@@ -118,7 +123,9 @@ class RandomString(Distribution):
 
     def generator(self):
         while True:
-            yield random.choices(string.ascii_letters + string.digits, k=self.length)
+            yield "".join(
+                random.choices(string.ascii_letters + string.digits, k=self.length)
+            )
 
 
 class Normal(Distribution):
