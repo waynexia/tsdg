@@ -1,0 +1,17 @@
+[project]
+name = "tsdg"
+version = "0.1.0"
+description = "Generating Prometheus series and data"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "protobuf==5.29.4",
+  "python-snappy>=0.7.3",
+  "pyyaml",
+  "tqdm",
+]
+
+[tool.uv]
+dev-dependencies = [
+  "pyright",
+]
