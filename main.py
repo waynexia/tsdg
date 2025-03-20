@@ -98,8 +98,7 @@ def generate_prom_data(
     prom_out: str,
 ):
     """
-    Generates time-series data based on the provided configuration and writes it to a CSV file.
-
+    Generates time-series data based on the provided configuration and writes it as binary remote write protobuf data compressed with snappy.
     Args:
         start (int): Start time in UNIX timestamp.
         end (int): End time in UNIX timestamp.
