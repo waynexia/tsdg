@@ -22,7 +22,8 @@ class Distribution(ABC):
     def generator(self):
         pass
 
-    def from_config(config: dict):
+    @classmethod
+    def from_config(_cls, config: dict):
         """
         Selects the appropriate distribution class based on configuration and returns its instance.
 
@@ -245,7 +246,8 @@ class Weight:
         self.value = value
         self.weight = weight
 
-    def from_config(config: dict):
+    @classmethod
+    def from_config(_cls, config: dict):
         return Weight(config["value"], config["weight"])
 
 
@@ -260,7 +262,8 @@ class WeightedPreset(Distribution):
     def all(self) -> list:
         return [p.value for p in self.presets]
 
-    def from_config(config: list):
+    @classmethod
+    def from_config(_cls, config: list):
         return WeightedPreset([Weight.from_config(p) for p in config])
 
     def generator(self):
