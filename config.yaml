@@ -1,192 +1,81 @@
-start: "2023-05-09T17:49:12+08:00"
-end: "2023-05-09T18:49:12+08:00"
+start: "2025-03-21T17:49:12+08:00"
+end: "2025-03-21T18:49:12+08:00"
 interval: 10 # 10s
-precision: 1000 # ms
-num-field: 10
+
+base: node_exporter.yaml
+
 tags:
   - name: hostname
-    type: STRING
     nullability: 0
-    dist:
-      type: constant_string
-      value: host-0
-  - name: region
     type: STRING
-    nullability: 0
     dist:
       type: weighted_preset
       preset:
-        - value: sg-central
+        - value: srv-app42
+          weight: 1
+        - value: host-db18
+          weight: 1
+        - value: web-proc7
+          weight: 1
+        - value: compute-53b
+          weight: 1
+        - value: node21c
+          weight: 1
+        - value: srv-data09
+          weight: 1
+        - value: db-worker5
+          weight: 1
+        - value: vm-prod83
+          weight: 1
+        - value: host-analytics4
+          weight: 1
+        - value: worker-batch2
+          weight: 1
+        - value: compute-vm11
+          weight: 1
+        - value: app-server16
+          weight: 1
+        - value: host-backend7
+          weight: 1
+        - value: node-cache22
+          weight: 1
+        - value: srv-queue08
+          weight: 1
+  - name: region
+    nullability: 0
+    type: STRING
+    dist:
+      type: weighted_preset
+      preset:
+        - value: ap-southeast-1
           weight: 1
         - value: us-east-1
           weight: 1
         - value: us-west-2
           weight: 1
-        - value: us-central-1
+        - value: eu-central-1
           weight: 1
-  - name: datacenter
-    type: STRING
+  - name: az
     nullability: 0
+    type: STRING
     dist:
       type: weighted_preset
       preset:
-        - value: dc-0
+        - value: az-0
           weight: 1
-        - value: dc-1
+        - value: az-1
           weight: 1
-  - name: rack
-    type: STRING
-    nullability: 0
-    dist:
-      type: weighted_preset
-      preset:
-        - value: "1"
+        - value: az-2
           weight: 1
-        - value: "2"
+        - value: az-3
           weight: 1
-        - value: "3"
+        - value: az-4
           weight: 1
-        - value: "4"
+        - value: az-5
           weight: 1
-  - name: os
-    type: STRING
-    nullability: 0
-    dist:
-      type: weighted_preset
-      preset:
-        - value: ubuntu-22.04
+        - value: az-6
           weight: 1
-        - value: ubuntu-20.04
-          weight: 0.5
-  - name: arch
-    type: STRING
-    nullability: 0
-    dist:
-      type: weighted_preset
-      preset:
-        - value: x86_64
-          weight: 1
-        - value: aarch64
-          weight: 1
-  - name: team
-    type: STRING
-    nullability: 0
-    dist:
-      type: weighted_preset
-      preset:
-        - value: HZ
-          weight: 15
-        - value: BJ
-          weight: 10
-        - value: SH
-          weight: 0
-        - value: GZ
-          weight: 2
-  - name: services
-    type: STRING
-    nullability: 0
-    dist:
-      type: weighted_preset
-      preset:
-        - value: etcd
-          weight: 1
-        - value: kafka
-          weight: 1
-        - value: frontend
-          weight: 10
-        - value: datanode
-          weight: 5
-        - value: metasrv
-          weight: 3
-  - name: services_version
-    type: STRING
-    nullability: 0
-    dist:
-      type: weighted_preset
-      preset:
-        - value: "1.0"
-          weight: 1
-        - value: "2.0"
-          weight: 1
-  - name: services_env
-    type: STRING
-    nullability: 0
-    dist:
-      type: weighted_preset
-      preset:
-        - value: offline
-          weight: 1
-        - value: test
-          weight: 2
-        - value: prod
+        - value: az-7
           weight: 1
 
 fields:
-  - name: cpu
-    type: FLOAT
-    nullability: 0
-    dist:
-      type: random
-      lower_bound: 0
-      upper_bound: 100
-  - name: mem
-    type: FLOAT
-    nullability: 0
-    dist:
-      type: normal
-      mean: 0.5
-      stddev: 0.1
-  - name: disk
-    type: FLOAT
-    nullability: 0
-    dist:
-      type: mono_inc
-      step: 11
-  - name: network
-    type: FLOAT
-    nullability: 0
-    dist:
-      type: normal
-      mean: 100
-      stddev: 2000
-  - name: io
-    type: FLOAT
-    nullability: 0
-    dist:
-      type: normal
-      mean: 0
-      stddev: 200
-  - name: cpu_temp
-    type: FLOAT
-    nullability: 0
-    dist:
-      type: uniform
-      lower_bound: 0
-      upper_bound: 100
-  - name: mem_temp
-    type: FLOAT
-    nullability: 0
-    dist:
-      type: noise
-      max_fluctuation: 30
-  - name: disk_temp
-    type: FLOAT
-    nullability: 0
-    dist:
-      type: normal
-      mean: 0.5
-      stddev: 0.1
-  - name: network_temp
-    type: FLOAT
-    nullability: 0
-    dist:
-      type: periodic
-      period: 100
-      amplitude: 204800
-      bias: 1024
-  - name: io_temp
-    type: FLOAT
-    nullability: 0
-    dist:
-      type: constant_float
-      value: 10.1
