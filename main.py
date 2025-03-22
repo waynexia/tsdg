@@ -81,62 +81,66 @@ def generate_prom_data(
 
     tags_permutation = tag_set_permutation(tags)
 
+    ## we will start from build all time-series and value generators
+    ## the items in this list are tuple of (labels, fieldgen)
+    all_series = []
+    for series in tags_permutation:
+        parent_labels = {}
+        parent_labels.update(series)
+
+        for (field, metrics_base_labels) in base_metrics.items():
+
+            for base_labels in metrics_base_labels:
+                time_series_labels = copy.copy(parent_labels)
+
+                field_def = fields.get(field)
+                if field_def is not None:
+                    field_gen = field_def.dist.generator()
+                else:
+                    field_gen = Random(0, 100).generator()
+
+                time_series_labels['__name__'] = field
+                time_series_labels.update(base_labels)
+
+                all_series.append((time_series_labels, field_gen))
+
+    ## print a summary of time_series
+    print(f"Total number of time series {len(all_series)}")
+
+
     ## open writer from file index 0
     writer = open(prom_file(prom_out, file_index), 'wb')
-
     ## split timestamp into slice
     for slice_start in trange(start, end, time_slice):
 
-        ## for each tag combination
-        for series in tags_permutation:
-            labels = {}
+        ## for each time series
+        for (labels, field_gen) in all_series:
 
-            ## assign tags
-            for (label_name, label_value) in series.items():
-                labels[label_name] = label_value
+            ## reset sample array
+            samples = []
 
-            ## for each metric
-            for (field, metrics_base_labels) in base_metrics.items():
-                ## set metric name
-                labels['__name__'] = field
+            ## generate full time series
+            for ts in range(slice_start, slice_start+time_slice, interval):
+                timestamp = ts * PRECISION
+                value = next(field_gen)
+                samples.append((timestamp, value))
+                accum_size += 1
 
-                for base_labels in metrics_base_labels:
-                    local_labels = copy.copy(labels)
-                    local_labels.update(base_labels)
+            time_series.append(build_timeseries(labels, samples))
 
-                    ## field_gen: if specified via
-                    ## FIXME: this should be generated per time-series
-                    field_def = fields.get(field)
-                    if field_def is not None:
-                        field_gen = field_def.dist.generator()
-                    else:
-                        field_gen = Random(0, 100).generator()
+            ## flush to file and start a new file
+            if accum_size >= BATCH_SIZE:
+                write_request = build_remote_write_message(time_series)
+                writer.write(write_request)
+                writer.close()
 
-                    ## reset sample array
-                    samples = []
-
-                    ## generate full time series
-                    for ts in range(slice_start, slice_start+time_slice, interval):
-                        timestamp = ts * PRECISION
-                        value = next(field_gen)
-                        samples.append((timestamp, value))
-                        accum_size += 1
-
-                    time_series.append(build_timeseries(local_labels, samples))
-
-                    ## flush to file and start a new file
-                    if accum_size >= BATCH_SIZE:
-                        write_request = build_remote_write_message(time_series)
-                        writer.write(write_request)
-                        writer.close()
-
-                        ## open new file
-                        file_index += 1
-                        writer = open(prom_file(prom_out, file_index), 'wb')
-                        ## reset counters
-                        total_counter += accum_size
-                        accum_size = 0
-                        time_series = []
+                ## open new file
+                file_index += 1
+                writer = open(prom_file(prom_out, file_index), 'wb')
+                ## reset counters
+                total_counter += accum_size
+                accum_size = 0
+                time_series = []
 
     write_request = build_remote_write_message(time_series)
     writer.write(write_request)
