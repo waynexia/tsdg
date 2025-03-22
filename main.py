@@ -1,5 +1,5 @@
 import argparse
-import csv
+import copy
 import yaml
 import itertools
 from functools import reduce
@@ -12,6 +12,7 @@ from proto.remote_pb2 import WriteRequest
 from proto.types_pb2 import TimeSeries, Label, Sample
 
 from col import Column
+from distribution import Random
 
 # Parse command line arguments and return the parsed result
 def arg_parser():
@@ -24,7 +25,6 @@ def arg_parser():
     parser = argparse.ArgumentParser(
         prog="tsdg", description="Time-Series Data Generator"
     )
-    parser.add_argument("-o", "--csvout", help="generate csv output file")
     parser.add_argument("--promout", help="generate remote write protobuf data")
     parser.add_argument("-c", "--config", default="./config.yaml", help="config file")
     return parser.parse_args()
@@ -47,54 +47,15 @@ def tag_set_permutation(tags: list):
     permutation = [dict(zip(keys, v)) for v in itertools.product(*values)]
     return permutation
 
-# Generate time-series data based on configuration
-def generate_csv_data(
-    start: int,
-    end: int,
-    interval: int,
-    precision: int,
-    tags: list,
-    fields: list,
-    csv_out: str,
-):
-    """
-    Generates time-series data based on the provided configuration and writes it to a CSV file.
-
-    Args:
-        start (int): Start time in UNIX timestamp.
-        end (int): End time in UNIX timestamp.
-        interval (int): Time interval between data points.
-        precision (int): Precision of the timestamp.
-        tags (list): List of tag definitions.
-        fields (list): List of field definitions.
-        csv_out (str): Output file for the generated CSV file.
-    """
-    with open(csv_out, "w", newline="") as output:
-        writer = csv.writer(output, delimiter=",")
-        # write header
-        header = ["ts"] + [t.name for t in tags] + [f.name for f in fields]
-        writer.writerow(header)
-        tags_permutation = tag_set_permutation(tags)
-        series_generator = [
-            [series, dict([[field.name, field.dist.generator()] for field in fields])]
-            for series in tags_permutation
-        ]
-        # write rows
-        for ts in trange(start, end, interval):
-            for series in series_generator:
-                timestamp = ts * precision
-                tag_array = [v for v in series[0].values()]
-                field_array = [next(v) for v in series[1].values()]
-                writer.writerow([timestamp] + tag_array + field_array)
 
 # Generate time-series data based on configuration
 def generate_prom_data(
     start: int,
     end: int,
     interval: int,
-    precision: int,
+    base_metrics: dict,
     tags: list,
-    fields: list,
+    fields: dict,
     prom_out: str,
 ):
     """
@@ -104,11 +65,14 @@ def generate_prom_data(
         end (int): End time in UNIX timestamp.
         interval (int): Time interval between data points.
         precision (int): Precision of the timestamp.
-        tags (list): List of tag definitions.
-        fields (list): List of field definitions.
+        base_metrics (list): The base prometheus metrics to generate from
+        tags (list): Additional tags definitions.
+        fields (dict): dict of field definitions.
         prom_out (str): Output file for the generated CSV file.
     """
     BATCH_SIZE = 10000000
+    PRECISION = 1000
+
     accum_size = 0
     file_index = 0
     total_counter = 0
@@ -116,10 +80,6 @@ def generate_prom_data(
     time_slice = 5 * 60 ## 5 mins
 
     tags_permutation = tag_set_permutation(tags)
-    series_generator = [
-        [series, dict([[field.name, field.dist.generator()] for field in fields])]
-        for series in tags_permutation
-    ]
 
     ## open writer from file index 0
     writer = open(prom_file(prom_out, file_index), 'wb')
@@ -128,42 +88,55 @@ def generate_prom_data(
     for slice_start in trange(start, end, time_slice):
 
         ## for each tag combination
-        for series in series_generator:
+        for series in tags_permutation:
             labels = {}
 
             ## assign tags
-            for (label_name, label_value) in series[0].items():
+            for (label_name, label_value) in series.items():
                 labels[label_name] = label_value
 
             ## for each metric
-            for (field, field_gen) in series[1].items():
+            for (field, metrics_base_labels) in base_metrics.items():
                 ## set metric name
                 labels['__name__'] = field
-                ## reset sample array
-                samples = []
 
-                ## generate full time series
-                for ts in range(slice_start, slice_start+time_slice, interval):
-                    timestamp = ts * precision
-                    value = next(field_gen)
-                    samples.append((timestamp, value))
-                    accum_size += 1
+                for base_labels in metrics_base_labels:
+                    local_labels = copy.copy(labels)
+                    local_labels.update(base_labels)
 
-                time_series.append(build_timeseries(labels, samples))
+                    ## field_gen: if specified via
+                    ## FIXME: this should be generated per time-series
+                    field_def = fields.get(field)
+                    if field_def is not None:
+                        field_gen = field_def.dist.generator()
+                    else:
+                        field_gen = Random(0, 100).generator()
 
-                ## flush to file and start a new file
-                if accum_size >= BATCH_SIZE:
-                    write_request = build_remote_write_message(time_series)
-                    writer.write(write_request)
-                    writer.close()
+                    ## reset sample array
+                    samples = []
 
-                    ## open new file
-                    file_index += 1
-                    writer = open(prom_file(prom_out, file_index), 'wb')
-                    ## reset counters
-                    total_counter += accum_size
-                    accum_size = 0
-                    time_series = []
+                    ## generate full time series
+                    for ts in range(slice_start, slice_start+time_slice, interval):
+                        timestamp = ts * PRECISION
+                        value = next(field_gen)
+                        samples.append((timestamp, value))
+                        accum_size += 1
+
+                    time_series.append(build_timeseries(local_labels, samples))
+
+                    ## flush to file and start a new file
+                    if accum_size >= BATCH_SIZE:
+                        write_request = build_remote_write_message(time_series)
+                        writer.write(write_request)
+                        writer.close()
+
+                        ## open new file
+                        file_index += 1
+                        writer = open(prom_file(prom_out, file_index), 'wb')
+                        ## reset counters
+                        total_counter += accum_size
+                        accum_size = 0
+                        time_series = []
 
     write_request = build_remote_write_message(time_series)
     writer.write(write_request)
@@ -235,6 +208,9 @@ def parse_col_defs(fields: list) -> list:
     Returns:
         list: A list of Column objects.
     """
+    if not fields:
+        return []
+
     return [Column.from_config(f) for f in fields]
 
 # Main function
@@ -251,28 +227,22 @@ def main():
     start = int(parse_time(config["start"]))
     end = int(parse_time(config["end"]))
     interval = int(config["interval"])
-    precision = int(config["precision"])
 
+    base_metrics = load_yaml(config['base'])
+    print(f"Loaded base metrics: {len(base_metrics)}")
     tags = parse_col_defs(config["tags"])
-    fields = parse_col_defs(config["fields"])
 
-    if args.csvout is not None:
-        generate_csv_data(
-            start=start,
-            end=end,
-            interval=interval,
-            precision=precision,
-            tags=tags,
-            fields=fields,
-            csv_out=args.csvout,
-        )
+    field_list = parse_col_defs(config["fields"])
+    fields = {}
+    for f in field_list:
+        fields[f['name']] = f
 
     if args.promout is not None:
         generate_prom_data(
             start=start,
             end=end,
             interval=interval,
-            precision=precision,
+            base_metrics=base_metrics,
             tags=tags,
             fields=fields,
             prom_out=args.promout,

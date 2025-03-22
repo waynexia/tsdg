@@ -1,0 +1,2119 @@
+go_gc_duration_seconds:
+- quantile: '0.5'
+- quantile: '0.75'
+- quantile: '1'
+- quantile: '0.25'
+- quantile: '0'
+go_gc_duration_seconds_count:
+- {}
+go_gc_duration_seconds_sum:
+- {}
+go_goroutines:
+- {}
+go_info:
+- version: go1.21.4
+go_memstats_alloc_bytes:
+- {}
+go_memstats_alloc_bytes_total:
+- {}
+go_memstats_buck_hash_sys_bytes:
+- {}
+go_memstats_frees_total:
+- {}
+go_memstats_gc_sys_bytes:
+- {}
+go_memstats_heap_alloc_bytes:
+- {}
+go_memstats_heap_idle_bytes:
+- {}
+go_memstats_heap_inuse_bytes:
+- {}
+go_memstats_heap_objects:
+- {}
+go_memstats_heap_released_bytes:
+- {}
+go_memstats_heap_sys_bytes:
+- {}
+go_memstats_last_gc_time_seconds:
+- {}
+go_memstats_lookups_total:
+- {}
+go_memstats_mallocs_total:
+- {}
+go_memstats_mcache_inuse_bytes:
+- {}
+go_memstats_mcache_sys_bytes:
+- {}
+go_memstats_mspan_inuse_bytes:
+- {}
+go_memstats_mspan_sys_bytes:
+- {}
+go_memstats_next_gc_bytes:
+- {}
+go_memstats_other_sys_bytes:
+- {}
+go_memstats_stack_inuse_bytes:
+- {}
+go_memstats_stack_sys_bytes:
+- {}
+go_memstats_sys_bytes:
+- {}
+go_threads:
+- {}
+node_boot_time_seconds:
+- {}
+node_context_switches_total:
+- {}
+node_cooling_device_cur_state:
+- name: '11'
+  type: Processor
+- name: '3'
+  type: Processor
+- name: '4'
+  type: Processor
+- name: '14'
+  type: Processor
+- name: '7'
+  type: Processor
+- name: '13'
+  type: Processor
+- name: '0'
+  type: Processor
+- name: '2'
+  type: Processor
+- name: '15'
+  type: Processor
+- name: '16'
+  type: LCD
+- name: '9'
+  type: Processor
+- name: '1'
+  type: Processor
+- name: '12'
+  type: Processor
+- name: '5'
+  type: Processor
+- name: '6'
+  type: Processor
+- name: '10'
+  type: Processor
+- name: '8'
+  type: Processor
+node_cooling_device_max_state:
+- name: '11'
+  type: Processor
+- name: '3'
+  type: Processor
+- name: '4'
+  type: Processor
+- name: '14'
+  type: Processor
+- name: '7'
+  type: Processor
+- name: '13'
+  type: Processor
+- name: '0'
+  type: Processor
+- name: '2'
+  type: Processor
+- name: '15'
+  type: Processor
+- name: '16'
+  type: LCD
+- name: '9'
+  type: Processor
+- name: '1'
+  type: Processor
+- name: '12'
+  type: Processor
+- name: '5'
+  type: Processor
+- name: '6'
+  type: Processor
+- name: '10'
+  type: Processor
+- name: '8'
+  type: Processor
+node_cpu_frequency_max_hertz:
+- cpu: '4'
+- cpu: '8'
+- cpu: '11'
+- cpu: '1'
+- cpu: '2'
+- cpu: '13'
+- cpu: '12'
+- cpu: '15'
+- cpu: '6'
+- cpu: '9'
+- cpu: '14'
+- cpu: '0'
+- cpu: '10'
+- cpu: '5'
+- cpu: '3'
+- cpu: '7'
+node_cpu_frequency_min_hertz:
+- cpu: '4'
+- cpu: '8'
+- cpu: '11'
+- cpu: '1'
+- cpu: '2'
+- cpu: '13'
+- cpu: '12'
+- cpu: '15'
+- cpu: '6'
+- cpu: '9'
+- cpu: '14'
+- cpu: '0'
+- cpu: '10'
+- cpu: '5'
+- cpu: '3'
+- cpu: '7'
+node_cpu_guest_seconds_total:
+- cpu: '7'
+  mode: nice
+- cpu: '1'
+  mode: nice
+- cpu: '15'
+  mode: user
+- cpu: '3'
+  mode: nice
+- cpu: '10'
+  mode: user
+- cpu: '6'
+  mode: nice
+- cpu: '8'
+  mode: user
+- cpu: '2'
+  mode: nice
+- cpu: '11'
+  mode: nice
+- cpu: '12'
+  mode: user
+- cpu: '4'
+  mode: user
+- cpu: '5'
+  mode: user
+- cpu: '14'
+  mode: user
+- cpu: '13'
+  mode: user
+- cpu: '9'
+  mode: user
+- cpu: '0'
+  mode: user
+- cpu: '15'
+  mode: nice
+- cpu: '10'
+  mode: nice
+- cpu: '12'
+  mode: nice
+- cpu: '1'
+  mode: user
+- cpu: '8'
+  mode: nice
+- cpu: '7'
+  mode: user
+- cpu: '4'
+  mode: nice
+- cpu: '3'
+  mode: user
+- cpu: '5'
+  mode: nice
+- cpu: '6'
+  mode: user
+- cpu: '14'
+  mode: nice
+- cpu: '2'
+  mode: user
+- cpu: '13'
+  mode: nice
+- cpu: '9'
+  mode: nice
+- cpu: '0'
+  mode: nice
+- cpu: '11'
+  mode: user
+node_cpu_scaling_frequency_hertz:
+- cpu: '4'
+- cpu: '8'
+- cpu: '11'
+- cpu: '1'
+- cpu: '2'
+- cpu: '13'
+- cpu: '12'
+- cpu: '15'
+- cpu: '6'
+- cpu: '9'
+- cpu: '14'
+- cpu: '0'
+- cpu: '10'
+- cpu: '5'
+- cpu: '3'
+- cpu: '7'
+node_cpu_scaling_frequency_max_hertz:
+- cpu: '4'
+- cpu: '8'
+- cpu: '11'
+- cpu: '1'
+- cpu: '2'
+- cpu: '13'
+- cpu: '12'
+- cpu: '15'
+- cpu: '6'
+- cpu: '9'
+- cpu: '14'
+- cpu: '0'
+- cpu: '10'
+- cpu: '5'
+- cpu: '3'
+- cpu: '7'
+node_cpu_scaling_frequency_min_hertz:
+- cpu: '4'
+- cpu: '8'
+- cpu: '11'
+- cpu: '1'
+- cpu: '2'
+- cpu: '13'
+- cpu: '12'
+- cpu: '15'
+- cpu: '6'
+- cpu: '9'
+- cpu: '14'
+- cpu: '0'
+- cpu: '10'
+- cpu: '5'
+- cpu: '3'
+- cpu: '7'
+node_cpu_scaling_governor:
+- cpu: '1'
+  governor: powersave
+- cpu: '6'
+  governor: performance
+- cpu: '10'
+  governor: userspace
+- cpu: '11'
+  governor: performance
+- cpu: '6'
+  governor: powersave
+- cpu: '8'
+  governor: ondemand
+- cpu: '4'
+  governor: userspace
+- cpu: '11'
+  governor: powersave
+- cpu: '5'
+  governor: userspace
+- cpu: '15'
+  governor: performance
+- cpu: '14'
+  governor: userspace
+- cpu: '13'
+  governor: userspace
+- cpu: '0'
+  governor: ondemand
+- cpu: '15'
+  governor: powersave
+- cpu: '1'
+  governor: schedutil
+- cpu: '7'
+  governor: ondemand
+- cpu: '1'
+  governor: conservative
+- cpu: '3'
+  governor: ondemand
+- cpu: '6'
+  governor: schedutil
+- cpu: '9'
+  governor: performance
+- cpu: '2'
+  governor: userspace
+- cpu: '11'
+  governor: ondemand
+- cpu: '6'
+  governor: conservative
+- cpu: '15'
+  governor: schedutil
+- cpu: '10'
+  governor: schedutil
+- cpu: '15'
+  governor: conservative
+- cpu: '8'
+  governor: userspace
+- cpu: '10'
+  governor: conservative
+- cpu: '5'
+  governor: schedutil
+- cpu: '12'
+  governor: ondemand
+- cpu: '14'
+  governor: schedutil
+- cpu: '4'
+  governor: conservative
+- cpu: '9'
+  governor: schedutil
+- cpu: '5'
+  governor: conservative
+- cpu: '0'
+  governor: userspace
+- cpu: '14'
+  governor: conservative
+- cpu: '10'
+  governor: performance
+- cpu: '9'
+  governor: conservative
+- cpu: '4'
+  governor: performance
+- cpu: '10'
+  governor: powersave
+- cpu: '1'
+  governor: ondemand
+- cpu: '7'
+  governor: userspace
+- cpu: '3'
+  governor: userspace
+- cpu: '4'
+  governor: powersave
+- cpu: '5'
+  governor: performance
+- cpu: '14'
+  governor: performance
+- cpu: '13'
+  governor: performance
+- cpu: '5'
+  governor: powersave
+- cpu: '6'
+  governor: ondemand
+- cpu: '14'
+  governor: powersave
+- cpu: '13'
+  governor: powersave
+- cpu: '2'
+  governor: conservative
+- cpu: '9'
+  governor: powersave
+- cpu: '15'
+  governor: ondemand
+- cpu: '2'
+  governor: performance
+- cpu: '10'
+  governor: ondemand
+- cpu: '4'
+  governor: schedutil
+- cpu: '12'
+  governor: userspace
+- cpu: '2'
+  governor: powersave
+- cpu: '0'
+  governor: schedutil
+- cpu: '13'
+  governor: schedutil
+- cpu: '9'
+  governor: ondemand
+- cpu: '0'
+  governor: conservative
+- cpu: '7'
+  governor: schedutil
+- cpu: '13'
+  governor: conservative
+- cpu: '8'
+  governor: performance
+- cpu: '1'
+  governor: userspace
+- cpu: '8'
+  governor: powersave
+- cpu: '7'
+  governor: conservative
+- cpu: '2'
+  governor: schedutil
+- cpu: '0'
+  governor: performance
+- cpu: '6'
+  governor: userspace
+- cpu: '0'
+  governor: powersave
+- cpu: '11'
+  governor: userspace
+- cpu: '7'
+  governor: performance
+- cpu: '3'
+  governor: performance
+- cpu: '15'
+  governor: userspace
+- cpu: '7'
+  governor: powersave
+- cpu: '3'
+  governor: powersave
+- cpu: '12'
+  governor: schedutil
+- cpu: '8'
+  governor: schedutil
+- cpu: '12'
+  governor: conservative
+- cpu: '4'
+  governor: ondemand
+- cpu: '8'
+  governor: conservative
+- cpu: '5'
+  governor: ondemand
+- cpu: '9'
+  governor: userspace
+- cpu: '14'
+  governor: ondemand
+- cpu: '13'
+  governor: ondemand
+- cpu: '12'
+  governor: performance
+- cpu: '3'
+  governor: schedutil
+- cpu: '12'
+  governor: powersave
+- cpu: '11'
+  governor: schedutil
+- cpu: '3'
+  governor: conservative
+- cpu: '2'
+  governor: ondemand
+- cpu: '11'
+  governor: conservative
+- cpu: '1'
+  governor: performance
+node_cpu_seconds_total:
+- cpu: '15'
+  mode: iowait
+- cpu: '5'
+  mode: irq
+- cpu: '1'
+  mode: nice
+- cpu: '10'
+  mode: system
+- cpu: '14'
+  mode: irq
+- cpu: '13'
+  mode: irq
+- cpu: '4'
+  mode: system
+- cpu: '0'
+  mode: steal
+- cpu: '13'
+  mode: steal
+- cpu: '2'
+  mode: softirq
+- cpu: '6'
+  mode: nice
+- cpu: '5'
+  mode: system
+- cpu: '12'
+  mode: user
+- cpu: '14'
+  mode: system
+- cpu: '13'
+  mode: system
+- cpu: '7'
+  mode: steal
+- cpu: '3'
+  mode: steal
+- cpu: '9'
+  mode: iowait
+- cpu: '2'
+  mode: irq
+- cpu: '15'
+  mode: nice
+- cpu: '6'
+  mode: idle
+- cpu: '10'
+  mode: nice
+- cpu: '8'
+  mode: softirq
+- cpu: '1'
+  mode: user
+- cpu: '2'
+  mode: system
+- cpu: '5'
+  mode: nice
+- cpu: '6'
+  mode: user
+- cpu: '0'
+  mode: softirq
+- cpu: '8'
+  mode: irq
+- cpu: '9'
+  mode: nice
+- cpu: '10'
+  mode: idle
+- cpu: '11'
+  mode: user
+- cpu: '12'
+  mode: steal
+- cpu: '4'
+  mode: idle
+- cpu: '7'
+  mode: softirq
+- cpu: '3'
+  mode: softirq
+- cpu: '5'
+  mode: idle
+- cpu: '0'
+  mode: irq
+- cpu: '8'
+  mode: system
+- cpu: '14'
+  mode: idle
+- cpu: '10'
+  mode: iowait
+- cpu: '15'
+  mode: user
+- cpu: '4'
+  mode: iowait
+- cpu: '9'
+  mode: idle
+- cpu: '7'
+  mode: irq
+- cpu: '1'
+  mode: steal
+- cpu: '0'
+  mode: system
+- cpu: '3'
+  mode: irq
+- cpu: '5'
+  mode: iowait
+- cpu: '14'
+  mode: iowait
+- cpu: '13'
+  mode: iowait
+- cpu: '9'
+  mode: user
+- cpu: '2'
+  mode: idle
+- cpu: '7'
+  mode: system
+- cpu: '3'
+  mode: system
+- cpu: '11'
+  mode: steal
+- cpu: '12'
+  mode: softirq
+- cpu: '4'
+  mode: nice
+- cpu: '2'
+  mode: iowait
+- cpu: '15'
+  mode: steal
+- cpu: '14'
+  mode: nice
+- cpu: '13'
+  mode: nice
+- cpu: '12'
+  mode: irq
+- cpu: '8'
+  mode: idle
+- cpu: '1'
+  mode: softirq
+- cpu: '7'
+  mode: nice
+- cpu: '12'
+  mode: system
+- cpu: '0'
+  mode: idle
+- cpu: '8'
+  mode: iowait
+- cpu: '13'
+  mode: idle
+- cpu: '6'
+  mode: softirq
+- cpu: '10'
+  mode: user
+- cpu: '1'
+  mode: irq
+- cpu: '2'
+  mode: nice
+- cpu: '11'
+  mode: softirq
+- cpu: '4'
+  mode: user
+- cpu: '7'
+  mode: idle
+- cpu: '3'
+  mode: idle
+- cpu: '0'
+  mode: iowait
+- cpu: '5'
+  mode: user
+- cpu: '14'
+  mode: user
+- cpu: '6'
+  mode: irq
+- cpu: '13'
+  mode: user
+- cpu: '15'
+  mode: softirq
+- cpu: '1'
+  mode: system
+- cpu: '11'
+  mode: irq
+- cpu: '6'
+  mode: steal
+- cpu: '7'
+  mode: iowait
+- cpu: '3'
+  mode: iowait
+- cpu: '12'
+  mode: nice
+- cpu: '8'
+  mode: nice
+- cpu: '6'
+  mode: system
+- cpu: '15'
+  mode: irq
+- cpu: '11'
+  mode: iowait
+- cpu: '11'
+  mode: system
+- cpu: '9'
+  mode: softirq
+- cpu: '2'
+  mode: user
+- cpu: '0'
+  mode: nice
+- cpu: '10'
+  mode: steal
+- cpu: '12'
+  mode: idle
+- cpu: '15'
+  mode: system
+- cpu: '4'
+  mode: steal
+- cpu: '5'
+  mode: steal
+- cpu: '9'
+  mode: irq
+- cpu: '14'
+  mode: steal
+- cpu: '3'
+  mode: nice
+- cpu: '12'
+  mode: iowait
+- cpu: '9'
+  mode: steal
+- cpu: '8'
+  mode: user
+- cpu: '11'
+  mode: nice
+- cpu: '1'
+  mode: idle
+- cpu: '9'
+  mode: system
+- cpu: '0'
+  mode: user
+- cpu: '2'
+  mode: steal
+- cpu: '1'
+  mode: iowait
+- cpu: '11'
+  mode: idle
+- cpu: '10'
+  mode: softirq
+- cpu: '4'
+  mode: softirq
+- cpu: '7'
+  mode: user
+- cpu: '3'
+  mode: user
+- cpu: '6'
+  mode: iowait
+- cpu: '15'
+  mode: idle
+- cpu: '5'
+  mode: softirq
+- cpu: '14'
+  mode: softirq
+- cpu: '13'
+  mode: softirq
+- cpu: '10'
+  mode: irq
+- cpu: '4'
+  mode: irq
+- cpu: '8'
+  mode: steal
+node_disk_discard_time_seconds_total:
+- device: nvme0n1
+node_disk_discarded_sectors_total:
+- device: nvme0n1
+node_disk_discards_completed_total:
+- device: nvme0n1
+node_disk_discards_merged_total:
+- device: nvme0n1
+node_disk_flush_requests_time_seconds_total:
+- device: nvme0n1
+node_disk_flush_requests_total:
+- device: nvme0n1
+node_disk_info:
+- device: nvme0n1
+  major: '259'
+  minor: '0'
+  model: ''
+  path: ''
+  revision: ''
+  serial: ''
+  wwn: ''
+node_disk_io_now:
+- device: nvme0n1
+node_disk_io_time_seconds_total:
+- device: nvme0n1
+node_disk_io_time_weighted_seconds_total:
+- device: nvme0n1
+node_disk_read_bytes_total:
+- device: nvme0n1
+node_disk_read_time_seconds_total:
+- device: nvme0n1
+node_disk_reads_completed_total:
+- device: nvme0n1
+node_disk_reads_merged_total:
+- device: nvme0n1
+node_disk_write_time_seconds_total:
+- device: nvme0n1
+node_disk_writes_completed_total:
+- device: nvme0n1
+node_disk_writes_merged_total:
+- device: nvme0n1
+node_disk_written_bytes_total:
+- device: nvme0n1
+node_dmi_info:
+- bios_date: 04/26/2023
+  bios_release: '5.24'
+  bios_vendor: American Megatrends International, LLC.
+  bios_version: '113'
+  board_asset_tag: Default string
+  board_name: SER
+  board_vendor: AZW
+  board_version: Version 1.0
+  chassis_asset_tag: Default string
+  chassis_vendor: Default string
+  chassis_version: Default string
+  product_family: SE
+  product_name: SER
+  product_sku: Default SKU
+  product_version: Version 1.0
+  system_vendor: AZW
+node_entropy_available_bits:
+- {}
+node_entropy_pool_size_bits:
+- {}
+node_exporter_build_info:
+- branch: HEAD
+  goarch: amd64
+  goos: linux
+  goversion: go1.21.4
+  revision: 7333465abf9efba81876303bb57e6fadb946041b
+  tags: netgo osusergo static_build
+  version: 1.7.0
+node_filefd_allocated:
+- {}
+node_filefd_maximum:
+- {}
+node_filesystem_avail_bytes:
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/user/1004
+- device: /dev/nvme0n1p2
+  fstype: ext4
+  mountpoint: /
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run
+- device: /dev/nvme0n1p1
+  fstype: vfat
+  mountpoint: /boot/efi
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/user/1000
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/lock
+node_filesystem_device_error:
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/user/1004
+- device: /dev/nvme0n1p2
+  fstype: ext4
+  mountpoint: /
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run
+- device: /dev/nvme0n1p1
+  fstype: vfat
+  mountpoint: /boot/efi
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/user/1000
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/lock
+node_filesystem_files:
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/user/1004
+- device: /dev/nvme0n1p2
+  fstype: ext4
+  mountpoint: /
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run
+- device: /dev/nvme0n1p1
+  fstype: vfat
+  mountpoint: /boot/efi
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/user/1000
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/lock
+node_filesystem_files_free:
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/user/1004
+- device: /dev/nvme0n1p2
+  fstype: ext4
+  mountpoint: /
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run
+- device: /dev/nvme0n1p1
+  fstype: vfat
+  mountpoint: /boot/efi
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/user/1000
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/lock
+node_filesystem_free_bytes:
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/user/1004
+- device: /dev/nvme0n1p2
+  fstype: ext4
+  mountpoint: /
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run
+- device: /dev/nvme0n1p1
+  fstype: vfat
+  mountpoint: /boot/efi
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/user/1000
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/lock
+node_filesystem_readonly:
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/user/1004
+- device: /dev/nvme0n1p2
+  fstype: ext4
+  mountpoint: /
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run
+- device: /dev/nvme0n1p1
+  fstype: vfat
+  mountpoint: /boot/efi
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/user/1000
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/lock
+node_filesystem_size_bytes:
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/user/1004
+- device: /dev/nvme0n1p2
+  fstype: ext4
+  mountpoint: /
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run
+- device: /dev/nvme0n1p1
+  fstype: vfat
+  mountpoint: /boot/efi
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/user/1000
+- device: tmpfs
+  fstype: tmpfs
+  mountpoint: /run/lock
+node_forks_total:
+- {}
+node_hwmon_chip_names:
+- chip: nvme_nvme0
+  chip_name: nvme
+- chip: thermal_thermal_zone0
+  chip_name: acpitz
+- chip: 0000:00:08_1_0000:74:00_0
+  chip_name: amdgpu
+- chip: pci0000:00_0000:00:18_3
+  chip_name: k10temp
+- chip: thermal_thermal_zone1
+  chip_name: iwlwifi_1
+node_hwmon_in_volts:
+- chip: 0000:00:08_1_0000:74:00_0
+  sensor: in0
+- chip: 0000:00:08_1_0000:74:00_0
+  sensor: in1
+node_hwmon_power_average_watt:
+- chip: 0000:00:08_1_0000:74:00_0
+  sensor: power1
+node_hwmon_sensor_label:
+- chip: pci0000:00_0000:00:18_3
+  label: Tctl
+  sensor: temp1
+- chip: 0000:00:08_1_0000:74:00_0
+  label: vddgfx
+  sensor: in0
+- chip: nvme_nvme0
+  label: Composite
+  sensor: temp1
+- chip: 0000:00:08_1_0000:74:00_0
+  label: slowPPT
+  sensor: power1
+- chip: 0000:00:08_1_0000:74:00_0
+  label: vddnb
+  sensor: in1
+- chip: nvme_nvme0
+  label: Sensor 1
+  sensor: temp2
+- chip: 0000:00:08_1_0000:74:00_0
+  label: edge
+  sensor: temp1
+- chip: nvme_nvme0
+  label: Sensor 2
+  sensor: temp3
+node_hwmon_temp_alarm:
+- chip: nvme_nvme0
+  sensor: temp1
+node_hwmon_temp_celsius:
+- chip: thermal_thermal_zone0
+  sensor: temp0
+- chip: nvme_nvme0
+  sensor: temp3
+- chip: pci0000:00_0000:00:18_3
+  sensor: temp1
+- chip: nvme_nvme0
+  sensor: temp1
+- chip: nvme_nvme0
+  sensor: temp2
+- chip: thermal_thermal_zone0
+  sensor: temp1
+- chip: 0000:00:08_1_0000:74:00_0
+  sensor: temp1
+node_hwmon_temp_crit_celsius:
+- chip: thermal_thermal_zone0
+  sensor: temp1
+- chip: nvme_nvme0
+  sensor: temp1
+node_hwmon_temp_max_celsius:
+- chip: nvme_nvme0
+  sensor: temp3
+- chip: nvme_nvme0
+  sensor: temp2
+- chip: nvme_nvme0
+  sensor: temp1
+node_hwmon_temp_min_celsius:
+- chip: nvme_nvme0
+  sensor: temp3
+- chip: nvme_nvme0
+  sensor: temp2
+- chip: nvme_nvme0
+  sensor: temp1
+node_intr_total:
+- {}
+node_load1:
+- {}
+node_load15:
+- {}
+node_load5:
+- {}
+node_memory_Active_anon_bytes:
+- {}
+node_memory_Active_bytes:
+- {}
+node_memory_Active_file_bytes:
+- {}
+node_memory_AnonHugePages_bytes:
+- {}
+node_memory_AnonPages_bytes:
+- {}
+node_memory_Bounce_bytes:
+- {}
+node_memory_Buffers_bytes:
+- {}
+node_memory_Cached_bytes:
+- {}
+node_memory_CommitLimit_bytes:
+- {}
+node_memory_Committed_AS_bytes:
+- {}
+node_memory_DirectMap1G_bytes:
+- {}
+node_memory_DirectMap2M_bytes:
+- {}
+node_memory_DirectMap4k_bytes:
+- {}
+node_memory_Dirty_bytes:
+- {}
+node_memory_FileHugePages_bytes:
+- {}
+node_memory_FilePmdMapped_bytes:
+- {}
+node_memory_HardwareCorrupted_bytes:
+- {}
+node_memory_HugePages_Free:
+- {}
+node_memory_HugePages_Rsvd:
+- {}
+node_memory_HugePages_Surp:
+- {}
+node_memory_HugePages_Total:
+- {}
+node_memory_Hugepagesize_bytes:
+- {}
+node_memory_Hugetlb_bytes:
+- {}
+node_memory_Inactive_anon_bytes:
+- {}
+node_memory_Inactive_bytes:
+- {}
+node_memory_Inactive_file_bytes:
+- {}
+node_memory_KReclaimable_bytes:
+- {}
+node_memory_KernelStack_bytes:
+- {}
+node_memory_Mapped_bytes:
+- {}
+node_memory_MemAvailable_bytes:
+- {}
+node_memory_MemFree_bytes:
+- {}
+node_memory_MemTotal_bytes:
+- {}
+node_memory_Mlocked_bytes:
+- {}
+node_memory_NFS_Unstable_bytes:
+- {}
+node_memory_PageTables_bytes:
+- {}
+node_memory_Percpu_bytes:
+- {}
+node_memory_SReclaimable_bytes:
+- {}
+node_memory_SUnreclaim_bytes:
+- {}
+node_memory_ShmemHugePages_bytes:
+- {}
+node_memory_ShmemPmdMapped_bytes:
+- {}
+node_memory_Shmem_bytes:
+- {}
+node_memory_Slab_bytes:
+- {}
+node_memory_SwapCached_bytes:
+- {}
+node_memory_SwapFree_bytes:
+- {}
+node_memory_SwapTotal_bytes:
+- {}
+node_memory_Unevictable_bytes:
+- {}
+node_memory_VmallocChunk_bytes:
+- {}
+node_memory_VmallocTotal_bytes:
+- {}
+node_memory_VmallocUsed_bytes:
+- {}
+node_memory_WritebackTmp_bytes:
+- {}
+node_memory_Writeback_bytes:
+- {}
+node_netstat_Icmp6_InErrors:
+- {}
+node_netstat_Icmp6_InMsgs:
+- {}
+node_netstat_Icmp6_OutMsgs:
+- {}
+node_netstat_Icmp_InErrors:
+- {}
+node_netstat_Icmp_InMsgs:
+- {}
+node_netstat_Icmp_OutMsgs:
+- {}
+node_netstat_Ip6_InOctets:
+- {}
+node_netstat_Ip6_OutOctets:
+- {}
+node_netstat_IpExt_InOctets:
+- {}
+node_netstat_IpExt_OutOctets:
+- {}
+node_netstat_Ip_Forwarding:
+- {}
+node_netstat_TcpExt_ListenDrops:
+- {}
+node_netstat_TcpExt_ListenOverflows:
+- {}
+node_netstat_TcpExt_SyncookiesFailed:
+- {}
+node_netstat_TcpExt_SyncookiesRecv:
+- {}
+node_netstat_TcpExt_SyncookiesSent:
+- {}
+node_netstat_TcpExt_TCPSynRetrans:
+- {}
+node_netstat_TcpExt_TCPTimeouts:
+- {}
+node_netstat_Tcp_ActiveOpens:
+- {}
+node_netstat_Tcp_CurrEstab:
+- {}
+node_netstat_Tcp_InErrs:
+- {}
+node_netstat_Tcp_InSegs:
+- {}
+node_netstat_Tcp_OutRsts:
+- {}
+node_netstat_Tcp_OutSegs:
+- {}
+node_netstat_Tcp_PassiveOpens:
+- {}
+node_netstat_Tcp_RetransSegs:
+- {}
+node_netstat_Udp6_InDatagrams:
+- {}
+node_netstat_Udp6_InErrors:
+- {}
+node_netstat_Udp6_NoPorts:
+- {}
+node_netstat_Udp6_OutDatagrams:
+- {}
+node_netstat_Udp6_RcvbufErrors:
+- {}
+node_netstat_Udp6_SndbufErrors:
+- {}
+node_netstat_UdpLite6_InErrors:
+- {}
+node_netstat_UdpLite_InErrors:
+- {}
+node_netstat_Udp_InDatagrams:
+- {}
+node_netstat_Udp_InErrors:
+- {}
+node_netstat_Udp_NoPorts:
+- {}
+node_netstat_Udp_OutDatagrams:
+- {}
+node_netstat_Udp_RcvbufErrors:
+- {}
+node_netstat_Udp_SndbufErrors:
+- {}
+node_network_address_assign_type:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_carrier:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_carrier_changes_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_carrier_down_changes_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_carrier_up_changes_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_device_id:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_dormant:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_flags:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_iface_id:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_iface_link:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_iface_link_mode:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_info:
+- address: a2:b6:c8:98:40:6d
+  adminstate: up
+  broadcast: ff:ff:ff:ff:ff:ff
+  device: vethc0b1c2d
+  duplex: full
+  ifalias: ''
+  operstate: up
+- address: ''
+  adminstate: up
+  broadcast: ''
+  device: tailscale0
+  duplex: full
+  ifalias: ''
+  operstate: unknown
+- address: b2:54:73:07:af:d0
+  adminstate: up
+  broadcast: ff:ff:ff:ff:ff:ff
+  device: docker0
+  duplex: unknown
+  ifalias: ''
+  operstate: up
+- address: 84:47:09:20:60:ac
+  adminstate: up
+  broadcast: ff:ff:ff:ff:ff:ff
+  device: enp2s0
+  duplex: full
+  ifalias: ''
+  operstate: up
+- address: 56:d8:cf:52:22:b3
+  adminstate: up
+  broadcast: ff:ff:ff:ff:ff:ff
+  device: veth2b738d7
+  duplex: full
+  ifalias: ''
+  operstate: up
+- address: fa:7c:be:d2:7b:fa
+  adminstate: up
+  broadcast: ff:ff:ff:ff:ff:ff
+  device: veth70bbe68
+  duplex: full
+  ifalias: ''
+  operstate: up
+- address: 00:00:00:00:00:00
+  adminstate: up
+  broadcast: 00:00:00:00:00:00
+  device: lo
+  duplex: ''
+  ifalias: ''
+  operstate: unknown
+- address: 0c:91:92:27:7b:3a
+  adminstate: down
+  broadcast: ff:ff:ff:ff:ff:ff
+  device: wlp3s0
+  duplex: ''
+  ifalias: ''
+  operstate: down
+- address: 56:53:c0:94:f2:b2
+  adminstate: up
+  broadcast: ff:ff:ff:ff:ff:ff
+  device: veth18308ac
+  duplex: full
+  ifalias: ''
+  operstate: up
+- address: 96:a9:d3:2e:18:02
+  adminstate: up
+  broadcast: ff:ff:ff:ff:ff:ff
+  device: br-695db5fee422
+  duplex: unknown
+  ifalias: ''
+  operstate: up
+node_network_mtu_bytes:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_name_assign_type:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_net_dev_group:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_protocol_type:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_receive_bytes_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_receive_compressed_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_receive_drop_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_receive_errs_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_receive_fifo_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_receive_frame_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_receive_multicast_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_receive_nohandler_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_receive_packets_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_speed_bytes:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_transmit_bytes_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_transmit_carrier_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_transmit_colls_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_transmit_compressed_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_transmit_drop_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_transmit_errs_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_transmit_fifo_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_transmit_packets_total:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_transmit_queue_length:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_network_up:
+- device: br-695db5fee422
+- device: veth18308ac
+- device: lo
+- device: enp2s0
+- device: tailscale0
+- device: docker0
+- device: vethc0b1c2d
+- device: wlp3s0
+- device: veth2b738d7
+- device: veth70bbe68
+node_nf_conntrack_entries:
+- {}
+node_nf_conntrack_entries_limit:
+- {}
+node_nvme_info:
+- device: nvme0
+  firmware_revision: ZTA32JF0
+  model: ZHITAI TiPro7000 1TB
+  serial: ZTA21T0KA2329305FA
+  state: live
+node_os_info:
+- build_id: ''
+  id: ubuntu
+  id_like: debian
+  image_id: ''
+  image_version: ''
+  name: Ubuntu
+  pretty_name: Ubuntu 22.04.5 LTS
+  variant: ''
+  variant_id: ''
+  version: 22.04.5 LTS (Jammy Jellyfish)
+  version_codename: jammy
+  version_id: '22.04'
+node_os_version:
+- id: ubuntu
+  id_like: debian
+  name: Ubuntu
+node_pressure_cpu_waiting_seconds_total:
+- {}
+node_pressure_io_stalled_seconds_total:
+- {}
+node_pressure_io_waiting_seconds_total:
+- {}
+node_pressure_memory_stalled_seconds_total:
+- {}
+node_pressure_memory_waiting_seconds_total:
+- {}
+node_procs_blocked:
+- {}
+node_procs_running:
+- {}
+node_schedstat_running_seconds_total:
+- cpu: '4'
+- cpu: '8'
+- cpu: '11'
+- cpu: '1'
+- cpu: '2'
+- cpu: '13'
+- cpu: '12'
+- cpu: '15'
+- cpu: '6'
+- cpu: '9'
+- cpu: '14'
+- cpu: '0'
+- cpu: '10'
+- cpu: '5'
+- cpu: '3'
+- cpu: '7'
+node_schedstat_timeslices_total:
+- cpu: '4'
+- cpu: '8'
+- cpu: '11'
+- cpu: '1'
+- cpu: '2'
+- cpu: '13'
+- cpu: '12'
+- cpu: '15'
+- cpu: '6'
+- cpu: '9'
+- cpu: '14'
+- cpu: '0'
+- cpu: '10'
+- cpu: '5'
+- cpu: '3'
+- cpu: '7'
+node_schedstat_waiting_seconds_total:
+- cpu: '4'
+- cpu: '8'
+- cpu: '11'
+- cpu: '1'
+- cpu: '2'
+- cpu: '13'
+- cpu: '12'
+- cpu: '15'
+- cpu: '6'
+- cpu: '9'
+- cpu: '14'
+- cpu: '0'
+- cpu: '10'
+- cpu: '5'
+- cpu: '3'
+- cpu: '7'
+node_scrape_collector_duration_seconds:
+- collector: fibrechannel
+- collector: sockstat
+- collector: filefd
+- collector: netstat
+- collector: loadavg
+- collector: softnet
+- collector: cpufreq
+- collector: cpu
+- collector: hwmon
+- collector: stat
+- collector: pressure
+- collector: meminfo
+- collector: uname
+- collector: schedstat
+- collector: zfs
+- collector: arp
+- collector: infiniband
+- collector: nfsd
+- collector: timex
+- collector: xfs
+- collector: mdadm
+- collector: os
+- collector: textfile
+- collector: rapl
+- collector: tapestats
+- collector: nfs
+- collector: time
+- collector: ipvs
+- collector: powersupplyclass
+- collector: filesystem
+- collector: udp_queues
+- collector: netclass
+- collector: selinux
+- collector: edac
+- collector: netdev
+- collector: bonding
+- collector: conntrack
+- collector: entropy
+- collector: btrfs
+- collector: bcache
+- collector: diskstats
+- collector: dmi
+- collector: thermal_zone
+- collector: nvme
+- collector: vmstat
+node_scrape_collector_success:
+- collector: fibrechannel
+- collector: sockstat
+- collector: filefd
+- collector: netstat
+- collector: loadavg
+- collector: softnet
+- collector: cpufreq
+- collector: cpu
+- collector: hwmon
+- collector: stat
+- collector: pressure
+- collector: meminfo
+- collector: uname
+- collector: schedstat
+- collector: zfs
+- collector: arp
+- collector: infiniband
+- collector: nfsd
+- collector: timex
+- collector: xfs
+- collector: mdadm
+- collector: os
+- collector: textfile
+- collector: rapl
+- collector: tapestats
+- collector: nfs
+- collector: time
+- collector: ipvs
+- collector: powersupplyclass
+- collector: filesystem
+- collector: udp_queues
+- collector: netclass
+- collector: selinux
+- collector: edac
+- collector: netdev
+- collector: bonding
+- collector: conntrack
+- collector: entropy
+- collector: btrfs
+- collector: bcache
+- collector: diskstats
+- collector: dmi
+- collector: thermal_zone
+- collector: nvme
+- collector: vmstat
+node_selinux_enabled:
+- {}
+node_sockstat_FRAG6_inuse:
+- {}
+node_sockstat_FRAG6_memory:
+- {}
+node_sockstat_FRAG_inuse:
+- {}
+node_sockstat_FRAG_memory:
+- {}
+node_sockstat_RAW6_inuse:
+- {}
+node_sockstat_RAW_inuse:
+- {}
+node_sockstat_TCP6_inuse:
+- {}
+node_sockstat_TCP_alloc:
+- {}
+node_sockstat_TCP_inuse:
+- {}
+node_sockstat_TCP_mem:
+- {}
+node_sockstat_TCP_mem_bytes:
+- {}
+node_sockstat_TCP_orphan:
+- {}
+node_sockstat_TCP_tw:
+- {}
+node_sockstat_UDP6_inuse:
+- {}
+node_sockstat_UDPLITE6_inuse:
+- {}
+node_sockstat_UDPLITE_inuse:
+- {}
+node_sockstat_UDP_inuse:
+- {}
+node_sockstat_UDP_mem:
+- {}
+node_sockstat_UDP_mem_bytes:
+- {}
+node_sockstat_sockets_used:
+- {}
+node_softnet_backlog_len:
+- cpu: '4'
+- cpu: '8'
+- cpu: '11'
+- cpu: '1'
+- cpu: '2'
+- cpu: '13'
+- cpu: '12'
+- cpu: '15'
+- cpu: '6'
+- cpu: '9'
+- cpu: '14'
+- cpu: '0'
+- cpu: '10'
+- cpu: '5'
+- cpu: '3'
+- cpu: '7'
+node_softnet_cpu_collision_total:
+- cpu: '4'
+- cpu: '8'
+- cpu: '11'
+- cpu: '1'
+- cpu: '2'
+- cpu: '13'
+- cpu: '12'
+- cpu: '15'
+- cpu: '6'
+- cpu: '9'
+- cpu: '14'
+- cpu: '0'
+- cpu: '10'
+- cpu: '5'
+- cpu: '3'
+- cpu: '7'
+node_softnet_dropped_total:
+- cpu: '4'
+- cpu: '8'
+- cpu: '11'
+- cpu: '1'
+- cpu: '2'
+- cpu: '13'
+- cpu: '12'
+- cpu: '15'
+- cpu: '6'
+- cpu: '9'
+- cpu: '14'
+- cpu: '0'
+- cpu: '10'
+- cpu: '5'
+- cpu: '3'
+- cpu: '7'
+node_softnet_flow_limit_count_total:
+- cpu: '4'
+- cpu: '8'
+- cpu: '11'
+- cpu: '1'
+- cpu: '2'
+- cpu: '13'
+- cpu: '12'
+- cpu: '15'
+- cpu: '6'
+- cpu: '9'
+- cpu: '14'
+- cpu: '0'
+- cpu: '10'
+- cpu: '5'
+- cpu: '3'
+- cpu: '7'
+node_softnet_processed_total:
+- cpu: '4'
+- cpu: '8'
+- cpu: '11'
+- cpu: '1'
+- cpu: '2'
+- cpu: '13'
+- cpu: '12'
+- cpu: '15'
+- cpu: '6'
+- cpu: '9'
+- cpu: '14'
+- cpu: '0'
+- cpu: '10'
+- cpu: '5'
+- cpu: '3'
+- cpu: '7'
+node_softnet_received_rps_total:
+- cpu: '4'
+- cpu: '8'
+- cpu: '11'
+- cpu: '1'
+- cpu: '2'
+- cpu: '13'
+- cpu: '12'
+- cpu: '15'
+- cpu: '6'
+- cpu: '9'
+- cpu: '14'
+- cpu: '0'
+- cpu: '10'
+- cpu: '5'
+- cpu: '3'
+- cpu: '7'
+node_softnet_times_squeezed_total:
+- cpu: '4'
+- cpu: '8'
+- cpu: '11'
+- cpu: '1'
+- cpu: '2'
+- cpu: '13'
+- cpu: '12'
+- cpu: '15'
+- cpu: '6'
+- cpu: '9'
+- cpu: '14'
+- cpu: '0'
+- cpu: '10'
+- cpu: '5'
+- cpu: '3'
+- cpu: '7'
+node_textfile_scrape_error:
+- {}
+node_thermal_zone_temp:
+- type: acpitz
+  zone: '0'
+node_time_clocksource_available_info:
+- clocksource: tsc
+  device: '0'
+- clocksource: acpi_pm
+  device: '0'
+node_time_clocksource_current_info:
+- clocksource: tsc
+  device: '0'
+node_time_seconds:
+- {}
+node_time_zone_offset_seconds:
+- time_zone: UTC
+node_timex_estimated_error_seconds:
+- {}
+node_timex_frequency_adjustment_ratio:
+- {}
+node_timex_loop_time_constant:
+- {}
+node_timex_maxerror_seconds:
+- {}
+node_timex_offset_seconds:
+- {}
+node_timex_pps_calibration_total:
+- {}
+node_timex_pps_error_total:
+- {}
+node_timex_pps_frequency_hertz:
+- {}
+node_timex_pps_jitter_seconds:
+- {}
+node_timex_pps_jitter_total:
+- {}
+node_timex_pps_shift_seconds:
+- {}
+node_timex_pps_stability_exceeded_total:
+- {}
+node_timex_pps_stability_hertz:
+- {}
+node_timex_status:
+- {}
+node_timex_sync_status:
+- {}
+node_timex_tai_offset_seconds:
+- {}
+node_timex_tick_seconds:
+- {}
+node_udp_queues:
+- ip: v6
+  queue: rx
+- ip: v4
+  queue: rx
+- ip: v6
+  queue: tx
+- ip: v4
+  queue: tx
+node_uname_info:
+- domainname: (none)
+  machine: x86_64
+  nodename: minipc-0
+  release: 5.15.0-134-generic
+  sysname: Linux
+  version: '#145-Ubuntu SMP Wed Feb 12 20:08:39 UTC 2025'
+node_vmstat_oom_kill:
+- {}
+node_vmstat_pgfault:
+- {}
+node_vmstat_pgmajfault:
+- {}
+node_vmstat_pgpgin:
+- {}
+node_vmstat_pgpgout:
+- {}
+node_vmstat_pswpin:
+- {}
+node_vmstat_pswpout:
+- {}
+process_cpu_seconds_total:
+- {}
+process_max_fds:
+- {}
+process_open_fds:
+- {}
+process_resident_memory_bytes:
+- {}
+process_start_time_seconds:
+- {}
+process_virtual_memory_bytes:
+- {}
+process_virtual_memory_max_bytes:
+- {}
+promhttp_metric_handler_errors_total:
+- cause: encoding
+- cause: gathering
+promhttp_metric_handler_requests_in_flight:
+- {}
+promhttp_metric_handler_requests_total:
+- code: '500'
+- code: '200'
+- code: '503'
+
