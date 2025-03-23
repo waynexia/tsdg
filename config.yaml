@@ -41,6 +41,26 @@ tags:
           weight: 1
         - value: srv-queue08
           weight: 1
+        - value: srv-frontend3
+          weight: 1
+        - value:  db-shard17
+          weight: 1
+        - value: vm-staging42
+          weight: 1
+        - value: compute-web19
+          weight: 1
+        - value: node-api06
+          weight: 1
+        - value: srv-backup11
+          weight: 1
+        - value: host-processing4
+          weight: 1
+        - value: worker-job15
+          weight: 1
+        - value: app-gateway8
+          weight: 1
+        - value: vm-storage24
+          weight: 1
   - name: region
     nullability: 0
     type: STRING
