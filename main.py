@@ -2,6 +2,7 @@ import argparse
 import copy
 import yaml
 import itertools
+import multiprocessing
 from functools import reduce
 from pathlib import Path
 import datetime
@@ -13,6 +14,12 @@ from proto.types_pb2 import TimeSeries, Label, Sample
 
 from col import Column
 from distribution import Random
+from counter import Counter
+
+BATCH_SIZE = 10000000
+PRECISION = 1000
+TIME_SLICE = 2 * 60 ## 2 mins
+
 
 # Parse command line arguments and return the parsed result
 def arg_parser():
@@ -27,6 +34,7 @@ def arg_parser():
     )
     parser.add_argument("--promout", help="generate remote write protobuf data")
     parser.add_argument("-c", "--config", default="./config.yaml", help="config file")
+    parser.add_argument("-j", "--parallelism", default=1, help="Parallelism when generating data")
     return parser.parse_args()
 
 # Generate permutations of tag sets
@@ -57,6 +65,7 @@ def generate_prom_data(
     tags: list,
     fields: dict,
     prom_out: str,
+    parallelism: int,
 ):
     """
     Generates time-series data based on the provided configuration and writes it as binary remote write protobuf data compressed with snappy.
@@ -70,14 +79,8 @@ def generate_prom_data(
         fields (dict): dict of field definitions.
         prom_out (str): Output file for the generated CSV file.
     """
-    BATCH_SIZE = 10000000
-    PRECISION = 1000
-
-    accum_size = 0
-    file_index = 0
-    total_counter = 0
-    time_series = []
-    time_slice = 5 * 60 ## 5 mins
+    file_index_counter = Counter(-1)
+    total_counter = Counter(0)
 
     tags_permutation = tag_set_permutation(tags)
 
@@ -107,20 +110,35 @@ def generate_prom_data(
     ## print a summary of time_series
     print(f"Total number of time series {len(all_series)}")
 
+    series_parts = split_into_n_parts(all_series, parallelism)
+    handles = []
+    for i in range(parallelism):
+        handle = multiprocessing.Process(target=generate_data_for_series, args=(series_parts[i], file_index_counter, total_counter, start, end, interval, prom_out))
+        handle.start()
+        handles.append(handle)
 
+    for handle in handles:
+        handle.join()
+
+    print(f"Total samples generated: {total_counter.value()}")
+
+def generate_data_for_series(series, file_index_counter, total_counter, start, end, interval, prom_out):
+    ## working set
+    time_series = []
+    accum_size = 0
     ## open writer from file index 0
-    writer = open(prom_file(prom_out, file_index), 'wb')
+    writer = open(prom_file(prom_out, file_index_counter.incr(1)), 'wb')
     ## split timestamp into slice
-    for slice_start in trange(start, end, time_slice):
+    for slice_start in trange(start, end, TIME_SLICE):
 
         ## for each time series
-        for (labels, field_gen) in all_series:
+        for (labels, field_gen) in series:
 
             ## reset sample array
             samples = []
 
             ## generate full time series
-            for ts in range(slice_start, slice_start+time_slice, interval):
+            for ts in range(slice_start, slice_start+TIME_SLICE, interval):
                 timestamp = ts * PRECISION
                 value = next(field_gen)
                 samples.append((timestamp, value))
@@ -135,20 +153,21 @@ def generate_prom_data(
                 writer.close()
 
                 ## open new file
-                file_index += 1
-                writer = open(prom_file(prom_out, file_index), 'wb')
+                writer = open(prom_file(prom_out, file_index_counter.incr(1)), 'wb')
                 ## reset counters
-                total_counter += accum_size
+                total_counter.incr(accum_size)
                 accum_size = 0
                 time_series = []
 
+    total_counter.incr(accum_size)
     write_request = build_remote_write_message(time_series)
     writer.write(write_request)
     writer.close()
 
-    total_counter += accum_size
-    print(f"Total samples generated: {total_counter}")
-
+def split_into_n_parts(lst, n):
+    """Split a list into n parts of approximately equal length."""
+    k, m = divmod(len(lst), n)
+    return [lst[i * k + min(i, m):(i + 1) * k + min(i + 1, m)] for i in range(n)]
 
 def prom_file(name: str, index: int) -> str:
     return f"{name}-{index}.bin"
@@ -250,6 +269,7 @@ def main():
             tags=tags,
             fields=fields,
             prom_out=args.promout,
+            parallelism=int(args.parallelism)
         )
 
 if __name__ == "__main__":
