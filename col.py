@@ -2,14 +2,16 @@ from enum import Enum
 
 from distribution import Distribution
 
+
 # Enum of data types with descriptions
 class DataType(Enum):
     """
     Enum for data types supported in columns.
     """
+
     INTEGER = "INTEGER"  # Represents integer data type
-    STRING = "STRING"    # Represents string data type
-    FLOAT = "FLOAT"      # Represents floating point data type
+    STRING = "STRING"  # Represents string data type
+    FLOAT = "FLOAT"  # Represents floating point data type
 
 
 # Class representing properties of one Column
@@ -17,6 +19,7 @@ class Column:
     """
     Represents a column in a dataset, including its name, data type, nullability, and distribution.
     """
+
     def __init__(
         self, name: str, type: DataType, nullability: float, dist: Distribution
     ):
