@@ -18,7 +18,6 @@ from counter import Counter
 
 BATCH_SIZE = 10000000
 PRECISION = 1000
-PARALLELISM = 5;
 TIME_SLICE = 2 * 60 ## 2 mins
 
 
@@ -35,6 +34,7 @@ def arg_parser():
     )
     parser.add_argument("--promout", help="generate remote write protobuf data")
     parser.add_argument("-c", "--config", default="./config.yaml", help="config file")
+    parser.add_argument("-j", "--parallelism", default=1, help="Parallelism when generating data")
     return parser.parse_args()
 
 # Generate permutations of tag sets
@@ -65,6 +65,7 @@ def generate_prom_data(
     tags: list,
     fields: dict,
     prom_out: str,
+    parallelism: int,
 ):
     """
     Generates time-series data based on the provided configuration and writes it as binary remote write protobuf data compressed with snappy.
@@ -109,9 +110,9 @@ def generate_prom_data(
     ## print a summary of time_series
     print(f"Total number of time series {len(all_series)}")
 
-    series_parts = split_into_n_parts(all_series, PARALLELISM)
+    series_parts = split_into_n_parts(all_series, parallelism)
     handles = []
-    for i in range(PARALLELISM):
+    for i in range(parallelism):
         handle = multiprocessing.Process(target=generate_data_for_series, args=(series_parts[i], file_index_counter, total_counter, start, end, interval, prom_out))
         handle.start()
         handles.append(handle)
@@ -268,6 +269,7 @@ def main():
             tags=tags,
             fields=fields,
             prom_out=args.promout,
+            parallelism=int(args.parallelism)
         )
 
 if __name__ == "__main__":
