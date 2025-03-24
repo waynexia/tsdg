@@ -189,7 +189,7 @@ def split_into_n_parts(lst, n):
 
 
 def prom_file(name: str, index: int) -> str:
-    return f"{name}-{index}.bin"
+    return f"{name}-{index:04d}.bin"
 
 
 def build_timeseries(
