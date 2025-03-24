@@ -284,7 +284,7 @@ def main():
     field_list = parse_col_defs(config["fields"])
     fields = {}
     for f in field_list:
-        fields[f["name"]] = f
+        fields[f.name] = f
 
     if args.promout is not None:
         generate_prom_data(
