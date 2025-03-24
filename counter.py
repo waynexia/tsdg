@@ -1,8 +1,9 @@
 import multiprocessing
 
+
 class Counter:
     def __init__(self, init=0):
-        self._value = multiprocessing.Value('i', init)
+        self._value = multiprocessing.Value("i", init)
         self._lock = multiprocessing.Lock()
 
     def incr(self, n):

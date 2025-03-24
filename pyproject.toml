@@ -15,4 +15,5 @@ dependencies = [
 [tool.uv]
 dev-dependencies = [
   "pyright",
+  "black",
 ]

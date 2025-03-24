@@ -18,7 +18,7 @@ from counter import Counter
 
 BATCH_SIZE = 10000000
 PRECISION = 1000
-TIME_SLICE = 2 * 60 ## 2 mins
+TIME_SLICE = 2 * 60  ## 2 mins
 
 
 # Parse command line arguments and return the parsed result
@@ -34,8 +34,11 @@ def arg_parser():
     )
     parser.add_argument("--promout", help="generate remote write protobuf data")
     parser.add_argument("-c", "--config", default="./config.yaml", help="config file")
-    parser.add_argument("-j", "--parallelism", default=1, help="Parallelism when generating data")
+    parser.add_argument(
+        "-j", "--parallelism", default=1, help="Parallelism when generating data"
+    )
     return parser.parse_args()
+
 
 # Generate permutations of tag sets
 def tag_set_permutation(tags: list):
@@ -91,7 +94,7 @@ def generate_prom_data(
         parent_labels = {}
         parent_labels.update(series)
 
-        for (field, metrics_base_labels) in base_metrics.items():
+        for field, metrics_base_labels in base_metrics.items():
 
             for base_labels in metrics_base_labels:
                 time_series_labels = copy.copy(parent_labels)
@@ -102,7 +105,7 @@ def generate_prom_data(
                 else:
                     field_gen = Random(0, 100).generator()
 
-                time_series_labels['__name__'] = field
+                time_series_labels["__name__"] = field
                 time_series_labels.update(base_labels)
 
                 all_series.append((time_series_labels, field_gen))
@@ -113,7 +116,18 @@ def generate_prom_data(
     series_parts = split_into_n_parts(all_series, parallelism)
     handles = []
     for i in range(parallelism):
-        handle = multiprocessing.Process(target=generate_data_for_series, args=(series_parts[i], file_index_counter, total_counter, start, end, interval, prom_out))
+        handle = multiprocessing.Process(
+            target=generate_data_for_series,
+            args=(
+                series_parts[i],
+                file_index_counter,
+                total_counter,
+                start,
+                end,
+                interval,
+                prom_out,
+            ),
+        )
         handle.start()
         handles.append(handle)
 
@@ -122,23 +136,26 @@ def generate_prom_data(
 
     print(f"Total samples generated: {total_counter.value()}")
 
-def generate_data_for_series(series, file_index_counter, total_counter, start, end, interval, prom_out):
+
+def generate_data_for_series(
+    series, file_index_counter, total_counter, start, end, interval, prom_out
+):
     ## working set
     time_series = []
     accum_size = 0
     ## open writer from file index 0
-    writer = open(prom_file(prom_out, file_index_counter.incr(1)), 'wb')
+    writer = open(prom_file(prom_out, file_index_counter.incr(1)), "wb")
     ## split timestamp into slice
     for slice_start in trange(start, end, TIME_SLICE):
 
         ## for each time series
-        for (labels, field_gen) in series:
+        for labels, field_gen in series:
 
             ## reset sample array
             samples = []
 
             ## generate full time series
-            for ts in range(slice_start, slice_start+TIME_SLICE, interval):
+            for ts in range(slice_start, slice_start + TIME_SLICE, interval):
                 timestamp = ts * PRECISION
                 value = next(field_gen)
                 samples.append((timestamp, value))
@@ -153,7 +170,7 @@ def generate_data_for_series(series, file_index_counter, total_counter, start, e
                 writer.close()
 
                 ## open new file
-                writer = open(prom_file(prom_out, file_index_counter.incr(1)), 'wb')
+                writer = open(prom_file(prom_out, file_index_counter.incr(1)), "wb")
                 ## reset counters
                 total_counter.incr(accum_size)
                 accum_size = 0
@@ -164,25 +181,30 @@ def generate_data_for_series(series, file_index_counter, total_counter, start, e
     writer.write(write_request)
     writer.close()
 
+
 def split_into_n_parts(lst, n):
     """Split a list into n parts of approximately equal length."""
     k, m = divmod(len(lst), n)
-    return [lst[i * k + min(i, m):(i + 1) * k + min(i + 1, m)] for i in range(n)]
+    return [lst[i * k + min(i, m) : (i + 1) * k + min(i + 1, m)] for i in range(n)]
+
 
 def prom_file(name: str, index: int) -> str:
-    return f"{name}-{index}.bin"
+    return f"{name}-{index:04d}.bin"
 
 
-def build_timeseries(labels: dict[str, str], samples: list[tuple[int, float]]) -> TimeSeries:
+def build_timeseries(
+    labels: dict[str, str], samples: list[tuple[int, float]]
+) -> TimeSeries:
     time_series = TimeSeries()
 
-    for (key, value) in labels.items():
+    for key, value in labels.items():
         time_series.labels.append(Label(name=key, value=value))
 
-    for (timestamp, value) in samples:
+    for timestamp, value in samples:
         time_series.samples.append(Sample(value=value, timestamp=timestamp))
 
     return time_series
+
 
 def build_remote_write_message(timeseries: list[TimeSeries]) -> bytes:
     write_request = WriteRequest()
@@ -191,6 +213,7 @@ def build_remote_write_message(timeseries: list[TimeSeries]) -> bytes:
     compressed_message = snappy.compress(serialized_message)
 
     return compressed_message
+
 
 # Load yaml file
 def load_yaml(path):
@@ -207,6 +230,7 @@ def load_yaml(path):
         config = yaml.safe_load(file)
         return config
 
+
 # Parse RFC3339 timestamp to UNIX timestamp
 def parse_time(time_str: str) -> float:
     """
@@ -219,6 +243,7 @@ def parse_time(time_str: str) -> float:
         float: The UNIX timestamp.
     """
     return datetime.datetime.fromisoformat(time_str).timestamp()
+
 
 # Parse column definitions from configuration
 def parse_col_defs(fields: list) -> list:
@@ -236,6 +261,7 @@ def parse_col_defs(fields: list) -> list:
 
     return [Column.from_config(f) for f in fields]
 
+
 # Main function
 def main():
     """
@@ -251,14 +277,14 @@ def main():
     end = int(parse_time(config["end"]))
     interval = int(config["interval"])
 
-    base_metrics = load_yaml(config['base'])
+    base_metrics = load_yaml(config["base"])
     print(f"Loaded base metrics: {len(base_metrics)}")
     tags = parse_col_defs(config["tags"])
 
     field_list = parse_col_defs(config["fields"])
     fields = {}
     for f in field_list:
-        fields[f['name']] = f
+        fields[f["name"]] = f
 
     if args.promout is not None:
         generate_prom_data(
@@ -269,8 +295,9 @@ def main():
             tags=tags,
             fields=fields,
             prom_out=args.promout,
-            parallelism=int(args.parallelism)
+            parallelism=int(args.parallelism),
         )
+
 
 if __name__ == "__main__":
     main()
