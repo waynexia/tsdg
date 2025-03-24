@@ -169,7 +169,7 @@ class Noise(Distribution):
     def generator(self):
         current = 0
         while True:
-            current += random.uniform(self.upper_bound, self.lower_bound)
+            current += random.uniform(self.lower_bound, self.upper_bound)
             yield current
 
 
