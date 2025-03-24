@@ -23,8 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           uv pip install .
-          uv pip install black
-          
+          uv pip install black==22.3.0
       - name: Check code formatting with Black
         run: |
           black --check .
