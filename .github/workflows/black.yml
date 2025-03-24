@@ -24,4 +24,5 @@ jobs:
         run: |
           uv sync
           uv venv
+          source .venv/bin/activate
           black --check .
