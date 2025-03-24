@@ -3,10 +3,24 @@ Time-Series Data Generator
 
 # Usage
 
+## Setup
+
+This package uses `uv` to manage virtual environments.
+
+After `uv` is installed, you can create a virtual environment by running the following command:
+
+```script
+uv venv
+source .venv/bin/activate
+uv sync
+```
+
+## Generate Data
+
 Just run the main.py file with python3
 
 ```script
-python main.py
+python main.py --promout <PATH>
 ```
 
 Or add `--help` to see detailed parameters
