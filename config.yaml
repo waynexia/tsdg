@@ -99,3 +99,10 @@ tags:
           weight: 1
 
 fields:
+  - name: node_cpu_seconds_total
+    type: FLOAT
+    nullability: 0
+    dist:
+      type: noise
+      lower_bound: 0.0
+      upper_bound: 100.0

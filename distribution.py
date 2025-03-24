@@ -46,7 +46,7 @@ class Distribution(ABC):
         elif dist_type == "uniform":
             return Uniform(config["upper_bound"], config["lower_bound"])
         elif dist_type == "noise":
-            return Noise(config["max_fluctuation"])
+            return Noise(config["upper_bound"], config["lower_bound"])
         elif dist_type == "periodic":
             return Periodic(config["period"], config["amplitude"], config["bias"])
         elif dist_type == "constant_string":
@@ -159,16 +159,17 @@ class Uniform(Distribution):
 
 class Noise(Distribution):
     """
-    Represents a noise distribution with a maximum fluctuation.
+    Represents a noise distribution with a random fluctuation in bound.
     """
 
-    def __init__(self, max_fluctuation: float):
-        self.max_fluctuation = max_fluctuation
+    def __init__(self, upper_bound: float, lower_bound: float):
+        self.upper_bound = upper_bound
+        self.lower_bound = lower_bound
 
     def generator(self):
         current = 0
         while True:
-            current += random.uniform(-self.max_fluctuation, self.max_fluctuation)
+            current += random.uniform(self.lower_bound, self.upper_bound)
             yield current
 
 
