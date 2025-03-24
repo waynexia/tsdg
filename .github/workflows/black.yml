@@ -22,7 +22,7 @@ jobs:
           
       - name: Check code formatting with Black
         run: |
-          uv sync
           uv venv
           source .venv/bin/activate
+          uv sync
           black --check .
