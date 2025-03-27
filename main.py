@@ -18,7 +18,7 @@ from counter import Counter
 
 BATCH_SIZE = 10000000
 PRECISION = 1000
-TIME_SLICE = 2 * 60  ## 2 mins
+TIME_SLICE = 30 * 60  ## 30 mins
 
 
 # Parse command line arguments and return the parsed result
